@@ -13,3 +13,24 @@ ATAT
 output:
 2 4 10
 """
+def get_motif(seq,motif_seq):
+    seq = seq.upper()
+    motif_seq = motif_seq.upper()
+    k_mer = len(motif_seq)
+    k_mer_nu = len(seq) - len(motif_seq) + 1
+    #get k-mer seq
+    k_lst = []
+    for k in range(k_mer_nu):
+        k_lst.append(seq[k:k_mer + k])
+    #list for save the index of motif_seq
+    mot_index = []
+    for inx,val in enumerate(k_lst):
+        #enumerate(list) return [(index,list[0]),(index,list[2]),......]
+        if val == motif_seq:
+            mot_index.append(inx + 1)
+
+    return mot_index
+
+if __name__ == '__main__':
+    a = get_motif(seq = "GATATATGCATATACTT",motif_seq="TATA")
+    print(a)
