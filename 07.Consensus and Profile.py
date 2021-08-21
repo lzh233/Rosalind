@@ -77,7 +77,7 @@ class Consensus:
         return con_seq
 
 def main():
-    a = Consensus(fasta="07.test_file.fasta")
+    a = Consensus(fasta=".//data//07.test_file.fasta")
     seq = a.get_consensus()
     print(f"Consensus: {seq}")
 if __name__=='__main__':
