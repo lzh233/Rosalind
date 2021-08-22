@@ -52,6 +52,7 @@ class Consensus:
         #sequence of Consensus
         con_seq = ""
         for i in count_lst:
+            #Find the max values' key
             res = max(i, key=lambda x: i[x])
             con_seq = con_seq + res
         #save sequence of Consensus
@@ -95,3 +96,11 @@ if __name__=='__main__':
      seq = a.get_consensus()
      print(f"Consensus: {seq}")
 
+##----------otuput-----------##
+"""
+ATGCAACT
+A: 5 1 0 0 5 5 0 0
+C: 0 0 1 4 2 0 6 1
+G: 1 1 6 3 0 1 0 0
+T: 1 5 0 0 0 1 1 6
+"""
