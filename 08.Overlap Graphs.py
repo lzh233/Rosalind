@@ -33,20 +33,20 @@ class Overlap:
     def get_fasta(fatsa,overlap_size):
         seq_name_lst = []
         sequence_lst = []
-        #读取序列名构建字典的key
+        #get sequences  and sequence name ，store in list
         for line in open(fatsa):
             if re.search(r'^>',line) != None:
                 seq_name_lst.append(line.strip().strip(">"))
             else:
                 sequence_lst.append(line.strip()[0:overlap_size] + line.strip()[-overlap_size:])
 
-    #得到开始和结尾序列的列表
+    #get the END or START sequense ，size was decided by overlap_size default 3
         start_seq = []
         end_seq = []
         for i in sequence_lst:
             start_seq.append(i[0:overlap_size])
             end_seq.append(i[-overlap_size:])
-        
+        #return  END or START sequense, sequence name
         return [seq_name_lst,start_seq,end_seq]
 
     def __init__(self,fatsa,overlap_size):
