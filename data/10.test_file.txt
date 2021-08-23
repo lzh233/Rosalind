@@ -4,3 +4,5 @@ GATTACA
 TAGACCA
 >Rosalind_3
 ATACA
+>Rosalind_4
+ATACA
