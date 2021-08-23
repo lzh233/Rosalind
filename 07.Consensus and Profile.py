@@ -3,6 +3,7 @@
 Created on Sat Aug 21 13:31:15 2021
 
 @author: liuzihao
+思路：先按照提取序列，后提取按照位置提取每条序列的对应位置的碱基，最后计数
 """
 
 import re

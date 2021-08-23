@@ -25,7 +25,6 @@ URL: http://rosalind.info/problems/grph/
 首先判断重叠区域：
 取出前三个碱基依次和其他序列的后三个碱基比较
 """
-import re
 import copy
 
 class Overlap:
@@ -35,7 +34,7 @@ class Overlap:
         sequence_lst = []
         #get sequences  and sequence name ，store in list
         for line in open(fatsa):
-            if re.search(r'^>',line) != None:
+            if line.startswith('>') == True:
                 seq_name_lst.append(line.strip().strip(">"))
             else:
                 sequence_lst.append(line.strip()[0:overlap_size] + line.strip()[-overlap_size:])
