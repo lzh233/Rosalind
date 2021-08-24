@@ -86,7 +86,7 @@ def main(fasta):
     print(test.get_sahre())
 
 if __name__=='__main__':
-    main(fasta = ".//data//10.test_file.txt")
+    main(fasta = ".//data//07.test_file2.txt")
 
 ##--------output--------##
 """
