@@ -47,7 +47,7 @@ class Orf:
         with open(fasta) as fsa:
             seq_lst = [seq.strip() for seq in fsa.readlines() if seq.startswith(">") == False ]
         seq_lst = " ".join(seq_lst)
-
+        #得到反向互补序列
         seq_res = seq_lst[::-1]
         for base in ["A","T","G","C"]:
            seq_res = seq_res.replace(base,BASE_TABLE[base])
@@ -59,9 +59,11 @@ class Orf:
         self.seq_r = self._result[1].replace("T","U")
         self.lst = []
         self.lst_r = []
+        
         for i in range(0,4):
             self.lst.append(re.findall(r".{3}",self.seq[i:]))
             self.lst_r.append(re.findall(r".{3}",self.seq_r[i:]))
+       
         for i in range(len(self.lst)):
             for j in range(len(self.lst[i])):
                 self.lst[i][j] = CONDON_TABLE[self.lst[i][j]]
@@ -83,16 +85,26 @@ class Orf:
 
 
     
+def main():
+    a = Orf(fasta=".//data//11.test_file.txt")
+    orf = []
+    for seq in a.get_orf():
+        seq = "".join(seq)
+        if seq == '':
+            continue
+        else:
+           orf.append(seq.strip("*"))
+    for s in set(orf):
+        print(s)
+
+if __name__ == "__main__":
+    main()
+
+"""
+有一条不知道怎么输出，以后在解决吧 MTPRLGLESLLE 不知道怎么用正则从MGMTPRLGLESLLE提取出来....
+"""
 
 
-a = Orf(fasta=".//data//11.test_file.txt")
-print(a.get_orf())
-orf = []
-for seq in a.get_orf():
-    seq = "".join(seq)
-    if seq == '':
-        continue
-    else:
-       orf.append(seq.strip("*"))
 
-print(set(orf)) 
+
+
