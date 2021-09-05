@@ -14,6 +14,8 @@
 3 匹配密码子，终止密码子用*替代，最后使用正则取匹配
 """
 import re
+import logging
+
 
 CONDON_TABLE = {'GCU':'A', 'GCC':'A', 'GCA':'A', 
                 'GCG':'A', 'CGU':'R', 'CGC':'R',

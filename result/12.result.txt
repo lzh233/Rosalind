@@ -1,0 +1,9 @@
+start	length(bp)	sequence
+5	4	TGCA
+7	4	CATG
+17	4	TATA
+18	4	ATAT
+21	4	TGCA
+4	6	ATGCAT
+6	6	GCATGC
+20	6	ATGCAT
