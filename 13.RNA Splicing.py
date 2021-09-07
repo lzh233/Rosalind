@@ -34,6 +34,7 @@ class Splicing:
     def get_splicing_seq(self):
         for intr in self.introns:
             while self.seq.find(intr) != -1:
+                #根据位置索引 [0:内含子出现的位置] + [内含子索引结束的位置到最后:]
                 self.seq = self.seq[0:self.seq.find(intr)] + self.seq[self.seq.find(intr) + len(intr): ]      
         #翻译(暂时不考虑起始密码子，默认给定的序列都是ATG开头)
         self.seq = self.seq.replace("T","U")

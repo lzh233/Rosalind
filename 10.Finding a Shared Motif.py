@@ -24,6 +24,10 @@ AC
 5, 如果所有序列一样长，那么将第一条序列最为参考序列
 6, 扩展一下可以写一个批量通过overlap拼接序列的脚本挖个坑
 """
+import logging
+from functools import wraps
+import time
+from datetime import timedelta
 
 class Share_Motif:
     #得到序列分为参考序列(最短)与待比序列
@@ -80,13 +84,49 @@ class Share_Motif:
         return share
 
 #test
-       
+def add_log(func):
+    '''
+    logging start and done.
+    '''
+    #设定输出格式
+    logFormatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    module = func.__module__#类定义所在的模块名称
+    name = func.__name__#函数名称
+    logger_name = f'{module}.{name}'#日志名
+    logger = logging.getLogger(logger_name)#创建一个log
+    #设定日志输出级别
+    logger.setLevel(logging.INFO)
+
+    consoleHandler = logging.StreamHandler()
+    consoleHandler.setFormatter(logFormatter)
+    logger.addHandler(consoleHandler)
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if args and hasattr(args[0], 'debug') and args[0].debug:
+            logger.setLevel(10)  # debug
+
+        logger.info('start...')
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        used = timedelta(seconds=end - start)
+        logger.info('done. time used: %s', used)
+        return result
+
+    wrapper.logger = logger
+    return wrapper
+
+@add_log
 def main(fasta):
     test = Share_Motif(fasta)
     print(test.get_sahre())
 
+
 if __name__=='__main__':
-    main(fasta = ".//data//07.test_file2.txt")
+    main(fasta = ".//data//10.test_file.txt")
+    
 
 ##--------output--------##
 """

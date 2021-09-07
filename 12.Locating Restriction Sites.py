@@ -36,6 +36,9 @@ class Restriction:
         self.seq_r = Restriction.get_fasta(fasta)[1]
         self._min_nt = min_nt
         self._max_nt = max_nt
+        """
+        得到需要的k-mer长度列表,只有偶数,因为所需序列一定是偶数长度
+        """
         self.k_len = [k_len for k_len in range(self._min_nt,self._max_nt + 1) if k_len %2 == 0]
 
     def get_restriction(self):
